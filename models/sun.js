@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { getAssetPath } from '../utils/paths.js';
 
 export class Sun {
     constructor(scene, x = 0, y = 0, z = 0, radius = 1) {
@@ -28,8 +29,8 @@ export class Sun {
     
     createSun() {
         // Load Sun texture
-        const sunTexture = this.textureLoader.load("textures/sun/SunMap.png");
-        
+        const sunTexture = this.textureLoader.load(getAssetPath("textures/sun/SunMap.png"));
+
         // Create Sun material
         const sunMaterial = new THREE.MeshStandardMaterial({ 
             map: sunTexture, 

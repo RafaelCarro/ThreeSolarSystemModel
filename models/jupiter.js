@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { getAssetPath } from '../utils/paths.js';
 
 export class Jupiter {
     constructor(scene, x = 0, y = 0, z = 0, radius = 1) {
@@ -22,8 +23,8 @@ export class Jupiter {
 
     createJupiter() {
         // Load Jupiter textures
-        const jupiterTexture = this.textureLoader.load("textures/jupiter/JupiterMap.jpg");
-        
+        const jupiterTexture = this.textureLoader.load(getAssetPath("textures/jupiter/JupiterMap.jpg"));
+
         // Create Jupiter material
         const jupiterMaterial = new THREE.MeshPhongMaterial({
             map: jupiterTexture,

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { getAssetPath } from '../utils/paths.js';
 
 export class Saturn {
     constructor(scene, x = 0, y = 0, z = 0, radius = 1) {
@@ -28,8 +29,8 @@ export class Saturn {
 
     createSaturn() {
         // Load Saturn textures
-        const saturnTexture = this.textureLoader.load("textures/saturn/SaturnMap.jpg");
-        
+        const saturnTexture = this.textureLoader.load(getAssetPath("textures/saturn/SaturnMap.jpg"));
+
         // Create Saturn material
         const saturnMaterial = new THREE.MeshPhongMaterial({
             map: saturnTexture,
@@ -49,8 +50,8 @@ export class Saturn {
         const ringGeometry = new THREE.RingGeometry(innerRadius, outerRadius, thetaSegments);
         
         // Load Saturn ring texture
-        const ringTexture = this.textureLoader.load("textures/saturn/SaturnRingMap.png");
-        
+        const ringTexture = this.textureLoader.load(getAssetPath("textures/saturn/SaturnRingMap.png"));
+
         // Create ring material with enhanced lighting
         const ringMaterial = new THREE.MeshPhongMaterial({
             map: ringTexture,

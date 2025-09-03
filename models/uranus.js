@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { getAssetPath } from '../utils/paths.js';
 
 export class Uranus {
     constructor(scene, x = 0, y = 0, z = 0, radius = 1) {
@@ -22,8 +23,8 @@ export class Uranus {
 
     createUranus() {
         // Load Uranus textures
-        const uranusTexture = this.textureLoader.load("textures/uranus/UranusMap.jpg");
-        
+        const uranusTexture = this.textureLoader.load(getAssetPath("textures/uranus/UranusMap.jpg"));
+
         // Create Uranus material
         const uranusMaterial = new THREE.MeshPhongMaterial({
             map: uranusTexture,

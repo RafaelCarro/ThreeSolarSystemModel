@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { getAssetPath } from './utils/paths.js';
 import { Earth } from './models/earth.js';
 import { Sun } from './models/sun.js';
 import { Mars } from './models/mars.js';
@@ -131,7 +132,7 @@ async function init() {
         try {
             console.log('Creating skybox...');
             skybox = new Skybox(scene);
-            await skybox.createPanoramicSkybox('./textures/universe/UniverseMap.jpg', {
+            await skybox.createPanoramicSkybox(getAssetPath('textures/universe/UniverseMap.jpg'), {
                 radius: 15000,
                 segments: 64,
                 brightness: 0.3,

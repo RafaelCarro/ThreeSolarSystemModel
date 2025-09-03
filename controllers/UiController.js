@@ -1202,6 +1202,7 @@ addPlanetTracker(planet, planetName, config) {
             min-width: 150px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             transition: all 0.2s ease;
+            cursor: pointer;
         `;
 
         // Planet name label with keyboard shortcut
@@ -1216,6 +1217,7 @@ addPlanetTracker(planet, planetName, config) {
             text-transform: uppercase;
             text-shadow: 0 0 8px ${this.hexToRgba(planetData.color, 0.6)};
             flex-grow: 1;
+            pointer-events: none;
         `;
 
         // Lock button
@@ -1236,21 +1238,31 @@ addPlanetTracker(planet, planetName, config) {
             margin-left: 10px;
             min-width: 32px;
             text-align: center;
+            pointer-events: none;
         `;
 
-        // Add hover effects
-        lockButton.addEventListener('mouseenter', () => {
-            lockButton.style.background = `rgba(${this.hexToRgb(planetData.color)}, 0.2)`;
-            lockButton.style.boxShadow = `0 0 8px ${this.hexToRgba(planetData.color, 0.5)}`;
+        // Add hover effects for the entire box
+        planetBox.addEventListener('mouseenter', () => {
+            planetBox.style.boxShadow = `0 0 15px ${this.hexToRgba(planetData.color, 0.6)}`;
+            planetBox.style.transform = 'translateX(5px)';
+            planetBox.style.background = `rgba(${this.hexToRgb(planetData.color)}, 0.1)`;
         });
 
-        lockButton.addEventListener('mouseleave', () => {
-            lockButton.style.background = 'transparent';
-            lockButton.style.boxShadow = 'none';
+        planetBox.addEventListener('mouseleave', () => {
+            // Check if currently locked to maintain proper background
+            const isLocked = this.cameraController?.target_locks?.[planetData.lockKey] || false;
+            planetBox.style.boxShadow = isLocked ? 
+                `0 0 20px ${this.hexToRgba(planetData.color, 0.8)}` : 
+                '0 0 10px rgba(0, 0, 0, 0.5)';
+            planetBox.style.transform = 'translateX(0px)';
+            planetBox.style.background = isLocked ? 
+                `rgba(${this.hexToRgb(planetData.color)}, 0.1)` : 
+                'rgba(0, 0, 0, 0.8)';
         });
 
-        // Add click handler for lock button
-        lockButton.addEventListener('click', () => {
+        // Add click handler for the entire planet box
+        planetBox.addEventListener('click', (event) => {
+            event.preventDefault();
             this.togglePlanetLock(planetData.key, planetData.lockKey);
         });
 
@@ -1260,17 +1272,6 @@ addPlanetTracker(planet, planetName, config) {
             box: planetBox,
             color: planetData.color,
             lockKey: planetData.lockKey
-        });
-
-        // Add box hover effects
-        planetBox.addEventListener('mouseenter', () => {
-            planetBox.style.boxShadow = `0 0 15px ${this.hexToRgba(planetData.color, 0.6)}`;
-            planetBox.style.transform = 'translateX(5px)';
-        });
-
-        planetBox.addEventListener('mouseleave', () => {
-            planetBox.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-            planetBox.style.transform = 'translateX(0px)';
         });
 
         planetBox.appendChild(nameLabel);

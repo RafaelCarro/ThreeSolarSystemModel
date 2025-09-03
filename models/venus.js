@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { getAssetPath } from '../utils/paths.js';
 
 export class Venus {
     constructor(scene, x = 0, y = 0, z = 0, radius = 1) {
@@ -25,9 +26,9 @@ export class Venus {
     
     createVenus() {
         // Load Venus textures
-        const venusTexture = this.textureLoader.load("textures/venus/VenusMap.jpg");
-        const elevationMap = this.textureLoader.load("textures/venus/VenusTopographicMap.jpg");
-        
+        const venusTexture = this.textureLoader.load(getAssetPath("textures/venus/VenusMap.jpg"));
+        const elevationMap = this.textureLoader.load(getAssetPath("textures/venus/VenusTopographicMap.jpg"));
+
         // Create Venus material
         const venusMaterial = new THREE.MeshPhongMaterial({
             map: venusTexture,
@@ -44,7 +45,7 @@ export class Venus {
     
     createAtmosphere() {
         // Load atmosphere texture
-        const atmosphereMap = this.textureLoader.load("textures/venus/VenusAtmosphericMap.jpg");
+        const atmosphereMap = this.textureLoader.load(getAssetPath("textures/venus/VenusAtmosphericMap.jpg"));
         
         // Create atmosphere material
         const atmosphereMaterial = new THREE.MeshStandardMaterial({

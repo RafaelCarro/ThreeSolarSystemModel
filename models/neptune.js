@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { getAssetPath } from '../utils/paths.js';
 
 export class Neptune {
     constructor(scene, x = 0, y = 0, z = 0, radius = 1) {
@@ -22,8 +23,8 @@ export class Neptune {
 
     createNeptune() {
         // Load Neptune textures
-        const neptuneTexture = this.textureLoader.load("textures/neptune/NeptuneMap.jpg");
-        
+        const neptuneTexture = this.textureLoader.load(getAssetPath("textures/neptune/NeptuneMap.jpg"));
+
         // Create Neptune material
         const neptuneMaterial = new THREE.MeshPhongMaterial({
             map: neptuneTexture,

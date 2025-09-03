@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { getAssetPath } from '../utils/paths.js';
 
 export class Earth {
     constructor(scene, x = 0, y = 0, z = 0, radius = 1) {
@@ -25,8 +26,8 @@ export class Earth {
     
     createEarth() {
         // Load Earth textures
-        const earthTexture = this.textureLoader.load("textures/earth/TextureMap.jpg");
-        const elevationMap = this.textureLoader.load("textures/earth/TopographicMap.png");
+        const earthTexture = this.textureLoader.load(getAssetPath("textures/earth/TextureMap.jpg"));
+        const elevationMap = this.textureLoader.load(getAssetPath("textures/earth/TopographicMap.png"));
         
         // Create Earth material
         const earthMaterial = new THREE.MeshPhongMaterial({

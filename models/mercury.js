@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { getAssetPath } from '../utils/paths.js';
 
 export class Mercury {
     constructor(scene, x = 0, y = 0, z = 0, radius = 1) {
@@ -22,9 +23,9 @@ export class Mercury {
 
     createMercury() {
         // Load Mercury textures
-        const mercuryTexture = this.textureLoader.load("textures/mercury/MercuryMap.jpg");
-        const elevationMap = this.textureLoader.load("textures/mercury/MercuryTopographicMap.png");
-        
+        const mercuryTexture = this.textureLoader.load(getAssetPath("textures/mercury/MercuryMap.jpg"));
+        const elevationMap = this.textureLoader.load(getAssetPath("textures/mercury/MercuryTopographicMap.png"));
+
         // Create Mercury material
         const mercuryMaterial = new THREE.MeshPhongMaterial({
             map: mercuryTexture,

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { getAssetPath } from '../utils/paths.js';
 
 export class Mars {
     constructor(scene, x = 0, y = 0, z = 0, radius = 1) {
@@ -22,9 +23,9 @@ export class Mars {
 
     createMars() {
         // Load Mars textures
-        const marsTexture = this.textureLoader.load("textures/mars/MarsMap.jpg");
-        const elevationMap = this.textureLoader.load("textures/mars/MarsTopographicMap.png");
-        
+        const marsTexture = this.textureLoader.load(getAssetPath("textures/mars/MarsMap.jpg"));
+        const elevationMap = this.textureLoader.load(getAssetPath("textures/mars/MarsTopographicMap.png"));
+
         // Create Mars material
         const marsMaterial = new THREE.MeshPhongMaterial({
             map: marsTexture,
